@@ -43,6 +43,7 @@ public class CarController : MonoBehaviour,IPunObservable
     public Vector3 initial_offset;
     public float current_angle;
 
+    public int BagSize = 3;
 
 
     [Header("Car Fuel")]
@@ -185,7 +186,7 @@ public class CarController : MonoBehaviour,IPunObservable
         currentFuel = DatabaseManager.Instance.GetLocalData().all_cars_fuel[selected_car];
 
 
-        CommonReferences.Instance.myInventory.BagSize= AllCarInfo.Instance.allCarInfo[selected_car].maxFoodCapacity;
+        BagSize= AllCarInfo.Instance.allCarInfo[selected_car].maxFoodCapacity;
 
         car_sprites = AllCarInfo.Instance.allCarInfo[selected_car].allColorSprite[selected_car_color].car_sprites;
         UpdateSpriteAsPerRotation();

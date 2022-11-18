@@ -11,15 +11,11 @@ public class CommonReferences : MonoBehaviour
 
     
     public static CommonReferences Instance;
-    public Transform HouseParent;
-    public Transform RestaurantParent;
+    public Transform DropPointsParent;
     public Transform GasStationparent;
-    public List<Sprite> foodTypes = new List<Sprite>();
 
     public static List<House> Houses = new List<House>();
-    public static List<Restaurant> Restaurants = new List<Restaurant>();
     public static List<Transform> GasStations = new List<Transform>();
-    public static RandomSample ClientGenerator;
 
     public Transform OrderUIParent;
 
@@ -27,9 +23,6 @@ public class CommonReferences : MonoBehaviour
     public PlayerController myPlayer;
     public CarController myCar;
     public GameObject carLight;
-
-    public PlayerZomatoApp myZomatoApp;
-    public Inventory myInventory;
 
     public static Action OnOrderDispatched;
     public static Action<int> OnDisplayHouse;
@@ -152,7 +145,6 @@ public class CommonReferences : MonoBehaviour
         }
     }
 
-    int iconID = -1;
     internal void SetupCameras()
     {
         camera_car.Follow = myCar.transform;
@@ -174,25 +166,13 @@ public class CommonReferences : MonoBehaviour
         PhotonNetwork.SendRate = 10;
 
         #region populate houses
-        int HouseCount = HouseParent.childCount;
+        int HouseCount = DropPointsParent.childCount;
         for (int i = 0; i < HouseCount; i++)
         {
             int temp = i;
-            var h = HouseParent.GetChild(temp).GetComponent<House>(); 
+            var h = DropPointsParent.GetChild(temp).GetComponent<House>(); 
             Houses.Add(h);
             //PendingOrdersForHouse.Add(0);
-        }
-        #endregion
-        #region populate Restaurants
-        int RestaurantCount = RestaurantParent.childCount;
-        if (RestaurantCount > 0)
-        {
-            for (int i = 0; i < RestaurantCount; i++)
-            {
-                int temp = i;
-                var r = RestaurantParent.GetChild(temp).GetComponent<Restaurant>();
-                Restaurants.Add(r);
-            }
         }
         #endregion
         #region populate GasStations
@@ -207,14 +187,8 @@ public class CommonReferences : MonoBehaviour
             }
         }
         #endregion
-        #region ClientGenerator
-        ClientGenerator = GetComponent<RandomSample>();
-        #endregion
     }
 
-    #region Map Management
-  
-    #endregion
 
     private void OnEnable()
     {
@@ -225,63 +199,10 @@ public class CommonReferences : MonoBehaviour
         OnDisplayHouse -= DisplayHouseIcon;
     }
 
-    #region DispatchOrder
-    public bool firstOrder = true;
-    public void DispatchOrder(int DriverID)
-    {
-        List<Restaurant> AcceptingRestaurants = new List<Restaurant>();
-
-
-        foreach (var item in Restaurants)
-        {
-            if (item.AcceptingOrders)
-            {
-                if (firstOrder)
-                {
-                    if (Vector2.Distance(item.transform.position, myPlayer.transform.position) < 60)
-                    {
-                        AcceptingRestaurants.Add(item);
-                    }
-                }
-                else
-                {
-                    
-                    AcceptingRestaurants.Add(item);
-                }
-            }
-        }
-
-        if (AcceptingRestaurants.Count > 0)
-        {
-            int RestaurantID = Random.Range(0, AcceptingRestaurants.Count);
-            Restaurant RS = AcceptingRestaurants[RestaurantID];
-            RS.OrderRecieved(DriverID);
-            OnOrderDispatched?.Invoke();
-            UIManager.Instance.ShowInformationMsg("You Have Recieved An Order!", 5);
-            firstOrder = false;
-        }
-        else
-        {
-            Debug.Log("All Restaurants are full");
-        }
-    }
-    #endregion
-
     #region DisplayHouse
     public void DisplayHouseIcon(int HouseID)
     {
-        if (HouseID != -1)
-        {
-            Houses[HouseID].ToggleHouseIcon();
-            //UIManager.Instance.pointer.Target = (Houses[HouseID].transform);
-        }
-    }
-    #endregion
-
-    #region HouseDelivered
-    public void HouseDelivered(OrderDetails foodID ,int HouseID)
-    {
-        Houses[HouseID].HouseDelivered(foodID);
+        
     }
     #endregion
 }

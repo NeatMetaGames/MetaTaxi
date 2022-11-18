@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    public OrderList orderList;
     public UIPointer pointer;
     public Slider fuelSlider;    
 
@@ -278,10 +277,6 @@ public class UIManager : MonoBehaviour
         var rect = panel.GetComponent<RectTransform>();
 
         LeanTween.move(rect, Vector3.zero, 0.5f).setEaseOutQuad();
-        if (CommonReferences.Instance.myInventory.myPickedUpFood.Count == 0) return;
-        int ID = Step.FindIndex(x => x.Code == "find house");
-        Step[ID].ObjectToPoint = CommonReferences.Instance.myInventory.myPickedUpFood[0].myUIPrefab.transform;
-        StartCoroutine(tutorialCO("find house"));
     }
 
     public void CloseBagPanel(GameObject panel)
