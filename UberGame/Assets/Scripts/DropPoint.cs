@@ -64,7 +64,10 @@ public class DropPoint : MonoBehaviour
                     CommonReferences.Instance.myCar.passengerPickedUp = false;
                     CommonReferences.Instance.myCar.dropPoint = null;
                     CommonReferences.Instance.myCar.reward = 0;
+
+
                     hasClient = false;
+                    DropPointSprite.gameObject.SetActive(false);
                     UIManager.Instance.pointer.Target = null;
                     CommonReferences.Instance.myCar.UpdateFuelData();
                 }
