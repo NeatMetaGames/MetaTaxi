@@ -58,6 +58,7 @@ public class SpawnPoint : MonoBehaviour
             Transporter = collision.transform;
             if (myClient)
             {
+                myClient.PickupIcon.SetActive(!myClient.AllPickedUp);
                 var Step = UIManager.Instance.Step;
                 int ID = Step.FindIndex(x => x.Code == "pick up");
                 if (!Step[ID].SkipThisStep && !Step[ID].AdminSkip)
@@ -66,7 +67,6 @@ public class SpawnPoint : MonoBehaviour
                     Step[ID].ObjectToPoint = myClient.PickupIcon.transform;
                 }
 
-                myClient.PickupIcon.SetActive(!myClient.AllPickedUp);
             }
         }
 

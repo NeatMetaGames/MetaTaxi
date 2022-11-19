@@ -76,6 +76,8 @@ public class Client : MonoBehaviour,IPunObservable
             passengers[temp].Initialize(temp);
         }
 
+        CommonReferences.Instance.toScaleObjectsOn.Add(this.transform);
+
         EventTrigger eventTrigger = PickupIcon.transform.GetChild(0).gameObject.AddComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
         entry.callback.AddListener((data) => { OnPointerClickDelegate((PointerEventData)data); });
@@ -114,7 +116,7 @@ public class Client : MonoBehaviour,IPunObservable
 
             CommonReferences.Instance.myCar.dropPoint = _DropPoint;
             StartCoroutine(UIManager.Instance.tutorialCO("find destination"));
-
+            CommonReferences.Instance.toScaleObjectsOn.Remove(this.transform);
 
 
             if (PV.IsMine || PhotonNetwork.IsMasterClient)

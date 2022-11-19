@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour,IPunObservable
 {
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour,IPunObservable
 #endif
                 if (diff > 86400)
                 {
-                   
+
                     UIManager.Instance.ToggleSpinUI(true);
                 }
                 else
@@ -108,6 +109,9 @@ public class PlayerController : MonoBehaviour,IPunObservable
             }
 
             UIManager.Instance.ToggleLoadingPanel(false);
+
+            StartCoroutine(StartGettingOrders());
+
         }
     }
 
@@ -357,6 +361,47 @@ public class PlayerController : MonoBehaviour,IPunObservable
         left,
         right
     }
+
+
+   
+
+    IEnumerator StartGettingOrders()
+    {
+        float initialDelay = Random.Range(0, 1);
+        yield return new WaitForSeconds(initialDelay);
+        while (true)
+        {
+            while (UIManager.Instance.tutStepInProgress)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            GetAnOrder();
+            #region tutorialStep
+            /*if (UIManager.Instance.PlayingTutorial)
+            {
+                int ID = UIManager.Instance.Step.FindIndex(x => x.Code == "found restaurant");
+                if (!UIManager.Instance.Step[ID].SkipThisStep)
+                {
+                    if (CommonReferences.Instance.myInventory.MyDispatchedOrders.Count > 0)
+                    {
+                        UIManager.Instance.Step[ID].ObjectToPoint = CommonReferences.Instance.myInventory.MyDispatchedOrders[0].transform;
+                    }
+                    StartCoroutine(UIManager.Instance.tutorialCO("find restaurant"));
+                }
+            }*/
+            #endregion
+            
+            
+                float randomWait = Random.Range(20, 50);
+                yield return new WaitForSeconds(randomWait);
+        }
+    }
+    public void GetAnOrder()
+    {
+        CommonReferences.Instance.SpawnClient();
+    }
+
 }
 public enum PlayerState
 {

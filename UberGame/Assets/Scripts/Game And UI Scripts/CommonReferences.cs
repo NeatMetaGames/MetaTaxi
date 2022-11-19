@@ -33,8 +33,7 @@ public class CommonReferences : MonoBehaviour
     public CinemachineVirtualCamera camera_car;
     public CinemachineVirtualCamera camera_map;
 
-    [SerializeField] List<Transform> toScaleObjectsOn = new List<Transform>();
-    [SerializeField] List<Transform> toScaleObjectsOn_RestarentIcons = new List<Transform>();
+    [SerializeField]public List<Transform> toScaleObjectsOn = new List<Transform>();
 
     public Transform[] playerPoz;
 
@@ -96,16 +95,10 @@ public class CommonReferences : MonoBehaviour
             for (int i = 0; i < toScaleObjectsOn.Count; i++)
             {
                 LeanTween.cancel(toScaleObjectsOn[i].gameObject);
-                LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one *2, 0.8f);
-            }
-            for (int i = 0; i < toScaleObjectsOn_RestarentIcons.Count; i++)
-            {
-                var scaleObject = toScaleObjectsOn_RestarentIcons[i].gameObject;
-                LeanTween.cancel(scaleObject);
-                LeanTween.scale(scaleObject, Vector3.one * 6, 0.8f).setOnComplete(() =>
+                LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one *5, 0.8f).setOnComplete(() =>
                 {
-                    LeanTween.moveLocalY(scaleObject, 5, 0.5f).setFrom(4).setLoopPingPong();
-                    LeanTween.scaleY(scaleObject, 6 * 1.25f, 0.5f).setFrom(6).setLoopPingPong();
+                   /* LeanTween.moveLocalY(toScaleObjectsOn[i].gameObject, 2, 0.5f).setFrom(0).setLoopPingPong();
+                    LeanTween.scaleY(toScaleObjectsOn[i].gameObject, 2 * 1.25f, 0.5f).setFrom(2).setLoopPingPong();*/
                 });
             }
         }
@@ -132,16 +125,10 @@ public class CommonReferences : MonoBehaviour
             for (int i = 0; i < toScaleObjectsOn.Count; i++)
             {
                 LeanTween.cancel(toScaleObjectsOn[i].gameObject);
-                LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one,0.8f);
-            }
-            for (int i = 0; i < toScaleObjectsOn_RestarentIcons.Count; i++)
-            {
-                var scaleObject = toScaleObjectsOn_RestarentIcons[i].gameObject;
-                LeanTween.cancel(scaleObject);
-                LeanTween.scale(scaleObject, Vector3.one * 4, 0.8f).setOnComplete(() =>
+                LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one,0.8f).setOnComplete(() =>
                 {
-                    LeanTween.moveLocalY(scaleObject, 5, 0.5f).setFrom(4).setLoopPingPong();
-                    LeanTween.scaleY(scaleObject, 4 * 1.25f, 0.5f).setFrom(4).setLoopPingPong();
+                   /* LeanTween.moveLocalY(toScaleObjectsOn[i].gameObject, 2, 0.5f).setFrom(0).setLoopPingPong();
+                    LeanTween.scaleY(toScaleObjectsOn[i].gameObject, 1.25f, 0.5f).setFrom(1).setLoopPingPong();*/
                 });
             }
         }
@@ -199,24 +186,7 @@ public class CommonReferences : MonoBehaviour
         #endregion
     }
 
-
-    private void OnEnable()
-    {
-        OnDisplayHouse += DisplayHouseIcon;
-    }
-    private void OnDisable()
-    {
-        OnDisplayHouse -= DisplayHouseIcon;
-    }
-
-    #region DisplayHouse
-    public void DisplayHouseIcon(int HouseID)
-    {
-        
-    }
-    #endregion
-
-    bool firstClient = true;
+   /* bool firstClient = true;*/
     public void SpawnClient()
     {
         List<SpawnPoint> freeSpawnPoints = new List<SpawnPoint>();
@@ -224,16 +194,16 @@ public class CommonReferences : MonoBehaviour
         {
             if (!item.occupied)
             {
-                if (firstClient)
+               /* if (firstClient)*/
                 {
-                    if (Vector2.Distance(item.transform.position, myCar.transform.position) < 50)
+                    if (Vector2.Distance(item.transform.position, myCar.transform.position) < 20)
                     {
                         freeSpawnPoints.Add(item);
-                        firstClient = false;
+                       /* firstClient = false;*/
                     }
                 }
-                else
-                    freeSpawnPoints.Add(item);
+               /* else
+                    freeSpawnPoints.Add(item);*/
             }
         }
         if (freeSpawnPoints.Count == 0)
@@ -249,6 +219,12 @@ public class CommonReferences : MonoBehaviour
         int orignalSpawnId = SpawnPoints.IndexOf(spawnPoint);
 
         var randomDropPointID = Random.Range(0, DropPoints.Count);
+        int minDistance = 25;
+        while(Vector2.Distance(myCar.transform.position, DropPoints[randomDropPointID].transform.position) < minDistance)
+        {
+            randomDropPointID = Random.Range(0, DropPoints.Count);
+            minDistance++;
+        }
         var dropPoint = DropPoints[randomDropPointID];
 
         var SpawnedClient = PhotonNetwork.Instantiate("NPC" , spawnPoint.transform.position , Quaternion.identity).GetComponent<Client>();
