@@ -92,6 +92,7 @@ public class Client : MonoBehaviour,IPunObservable
             passengers[temp].Initialize(temp);
         }
 
+        //CommonReferences.Instance.
         EventTrigger eventTrigger = PickupIcon.transform.GetChild(0).gameObject.AddComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
         entry.callback.AddListener((data) => { OnPointerClickDelegate((PointerEventData)data); });
@@ -117,12 +118,12 @@ public class Client : MonoBehaviour,IPunObservable
 
             CommonReferences.Instance.myCar.dropPoint = _DropPoint;
             StartCoroutine(UIManager.Instance.tutorialCO("find destination"));
-            CommonReferences.Instance.toScaleObjectsOn.Remove(this.transform);
+            //CommonReferences.Instance.toScaleObjectsOn.Remove(this.transform);
 
 
-            if (PV.IsMine || PhotonNetwork.IsMasterClient)
+            if (PV.IsMine)
             {
-                PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.Destroy(PV);
             }
             else
             {
@@ -153,14 +154,13 @@ public class Client : MonoBehaviour,IPunObservable
     [PunRPC]
     public void EnableThisClient(int spawn_id,int drop_id)
     {
-       
 
-        _SpawnPoint = CommonReferences.SpawnPoints[spawn_id];
-        _DropPoint = CommonReferences.DropPoints[drop_id];
-
-        _SpawnPoint.occupied = true;
-        _SpawnPoint.myClient = this;
-        
+        if (!isInialized)
+        {
+            temp_spawnID = spawn_id;
+            temp_dropID = drop_id;
+            SetClientData();
+        }
     }
 
     public void SetClientData()
@@ -175,7 +175,7 @@ public class Client : MonoBehaviour,IPunObservable
 
             _SpawnPoint.occupied = true;
             _SpawnPoint.myClient = this;
-
+            CommonReferences.Instance.toScaleObjectsOn.Add(this.transform);
             EnableClientForOthers();
         }
     }
@@ -218,6 +218,14 @@ public class Client : MonoBehaviour,IPunObservable
                     SetClientData();
                 }
             }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (CommonReferences.Instance.toScaleObjectsOn.Contains(this.transform))
+        {
+            CommonReferences.Instance.toScaleObjectsOn.Remove(this.transform);
         }
     }
 }

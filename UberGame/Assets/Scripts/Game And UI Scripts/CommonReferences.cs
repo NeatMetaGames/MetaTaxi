@@ -94,12 +94,15 @@ public class CommonReferences : MonoBehaviour
             SwitchCamera(CAMERA_TYPE.MAP);
             for (int i = 0; i < toScaleObjectsOn.Count; i++)
             {
-                LeanTween.cancel(toScaleObjectsOn[i].gameObject);
-                LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one *5, 0.8f).setOnComplete(() =>
+                if (toScaleObjectsOn[i] != null)
                 {
-                   /* LeanTween.moveLocalY(toScaleObjectsOn[i].gameObject, 2, 0.5f).setFrom(0).setLoopPingPong();
-                    LeanTween.scaleY(toScaleObjectsOn[i].gameObject, 2 * 1.25f, 0.5f).setFrom(2).setLoopPingPong();*/
-                });
+                    LeanTween.cancel(toScaleObjectsOn[i].gameObject);
+                    LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one * 5, 0.8f).setOnComplete(() =>
+                     {
+                    /* LeanTween.moveLocalY(toScaleObjectsOn[i].gameObject, 2, 0.5f).setFrom(0).setLoopPingPong();
+                     LeanTween.scaleY(toScaleObjectsOn[i].gameObject, 2 * 1.25f, 0.5f).setFrom(2).setLoopPingPong();*/
+                     });
+                }
             }
         }
         else
@@ -124,12 +127,15 @@ public class CommonReferences : MonoBehaviour
 
             for (int i = 0; i < toScaleObjectsOn.Count; i++)
             {
-                LeanTween.cancel(toScaleObjectsOn[i].gameObject);
-                LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one,0.8f).setOnComplete(() =>
+                if (toScaleObjectsOn[i] != null)
                 {
-                   /* LeanTween.moveLocalY(toScaleObjectsOn[i].gameObject, 2, 0.5f).setFrom(0).setLoopPingPong();
-                    LeanTween.scaleY(toScaleObjectsOn[i].gameObject, 1.25f, 0.5f).setFrom(1).setLoopPingPong();*/
-                });
+                    LeanTween.cancel(toScaleObjectsOn[i].gameObject);
+                    LeanTween.scale(toScaleObjectsOn[i].gameObject, Vector3.one, 0.8f).setOnComplete(() =>
+                     {
+                    /* LeanTween.moveLocalY(toScaleObjectsOn[i].gameObject, 2, 0.5f).setFrom(0).setLoopPingPong();
+                     LeanTween.scaleY(toScaleObjectsOn[i].gameObject, 1.25f, 0.5f).setFrom(1).setLoopPingPong();*/
+                     });
+                }
             }
         }
     }
@@ -186,10 +192,11 @@ public class CommonReferences : MonoBehaviour
         #endregion
     }
 
-   /* bool firstClient = true;*/
+    /* bool firstClient = true;*/
+    public List<SpawnPoint> freeSpawnPoints = new List<SpawnPoint>();
     public void SpawnClient()
     {
-        List<SpawnPoint> freeSpawnPoints = new List<SpawnPoint>();
+         freeSpawnPoints = new List<SpawnPoint>();
         foreach (var item in SpawnPoints)
         {
             if (!item.occupied)
@@ -235,7 +242,7 @@ public class CommonReferences : MonoBehaviour
         SpawnedClient._SpawnPoint = spawnPoint;
         SpawnedClient._DropPoint = dropPoint;
         SpawnedClient.temp_dropID = randomDropPointID;
-        SpawnedClient.temp_spawnID = randomSpawnPointID;
+        SpawnedClient.temp_spawnID = orignalSpawnId;
 
 
         spawnPoint.occupied = true;
