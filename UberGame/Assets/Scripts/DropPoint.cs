@@ -64,7 +64,7 @@ public class DropPoint : MonoBehaviour
                     CommonReferences.Instance.myCar.passengerPickedUp = false;
                     CommonReferences.Instance.myCar.dropPoint = null;
                     CommonReferences.Instance.myCar.reward = 0;
-
+                    UIManager.Instance.dropPointer.enabled = false;
 
                     hasClient = false;
                     DropPointSprite.gameObject.SetActive(false);

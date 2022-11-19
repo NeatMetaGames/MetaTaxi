@@ -36,6 +36,8 @@ public class Client : MonoBehaviour,IPunObservable
                     CommonReferences.Instance.myCar.reward = reward;
                     CommonReferences.Instance.myCar.passengerPickedUp = true;
                     _DropPoint.DropPointSprite.gameObject.SetActive(true);
+                    StartCoroutine(UIManager.Instance.tutorialCO("drop point checker"));
+                    UIManager.Instance.dropPointer.enabled = true;
                 }
             }
         }

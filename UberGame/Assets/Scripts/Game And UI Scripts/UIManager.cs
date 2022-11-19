@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public UIPointer pointer;
-    public Slider fuelSlider;    
+    public Slider fuelSlider;
+    public Button dropPointer;
 
     public string username;
     public int user_char;
@@ -320,6 +321,14 @@ public class UIManager : MonoBehaviour
     {
         pointer.Target = CommonReferences.Instance.myCar.transform;
     }
+    public void ShowMyDestination()
+    {
+        if (CommonReferences.Instance.myCar.dropPoint)
+        {
+            pointer.Target = CommonReferences.Instance.myCar.dropPoint.transform;
+        }
+    }
+
 
     public void EmergencyFuel()
     {
