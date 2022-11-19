@@ -259,31 +259,31 @@ public class UIManager : MonoBehaviour
         CommonReferences.Instance.myCar.RechargeFuel();
     }
     #endregion
-    public void OpenFoodPanel(GameObject panel)
+   /* public void OpenFoodPanel(GameObject panel)
     {
         var rect = panel.GetComponent<RectTransform>();
         
         LeanTween.move(rect, Vector3.zero, 0.5f).setEaseOutQuad();
-    }
+    }*/
 
-    public void CloseFoodPanel(GameObject panel)
+    /*public void CloseFoodPanel(GameObject panel)
     {
         var rect = panel.GetComponent<RectTransform>();
         LeanTween.move(rect, new Vector3(0, -500), 0.5f).setEaseOutQuad();
-    }
+    }*/
 
-    public void OpenBagPanel(GameObject panel)
+   /* public void OpenBagPanel(GameObject panel)
     {
         var rect = panel.GetComponent<RectTransform>();
 
         LeanTween.move(rect, Vector3.zero, 0.5f).setEaseOutQuad();
-    }
+    }*/
 
-    public void CloseBagPanel(GameObject panel)
+    /*public void CloseBagPanel(GameObject panel)
     {
         var rect = panel.GetComponent<RectTransform>();
         LeanTween.move(rect, new Vector3(0, -500), 0.5f).setEaseOutQuad();
-    }
+    }*/
 
 
     #region Button Helper

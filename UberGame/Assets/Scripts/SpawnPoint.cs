@@ -9,35 +9,44 @@ public class SpawnPoint : MonoBehaviour
     public bool occupied;
     public Client myClient;
     public Collider2D myCollider;
-    private bool StayingNear = false;
+    public bool StayingNear = false;
     private Transform Transporter;
     [SerializeField]private float delayTimer;
-    private void Awake()
+  
+    public void OnPointerClickDelegate(PointerEventData data)
     {
-        EventTrigger eventTrigger = this.transform.GetChild(0).gameObject.AddComponent<EventTrigger>();
-        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
-        entry.callback.AddListener((data) => { OnPointerClickDelegate((PointerEventData)data); });
-        eventTrigger.triggers.Add(entry);
-    }
+        #region temp
+        /* Debug.Log("trigger works");
+         if (myClient == null || myClient.AllPickedUp || !StayingNear) return;
 
-    private void OnPointerClickDelegate(PointerEventData data)
-    {
-        Debug.Log("trigger works");
-        if (myClient == null || myClient.AllPickedUp || !StayingNear) return;
+         if (CommonReferences.Instance.myCar.GetComponent<Rigidbody2D>().velocity.magnitude > 0.05f) return;
 
-        if (CommonReferences.Instance.myCar.GetComponent<Rigidbody2D>().velocity.magnitude > 0.05f) return;
+         //if (CommonReferences.Instance.myCar.pickedUpClients.Count < CommonReferences.Instance.myCar.BagSize)
+         if(!CommonReferences.Instance.myCar.passengerPickedUp)
+         {
+             Debug.Log("triggger definitely works");
+             myClient.SendInCar(Transporter);
+             CommonReferences.Instance.myCar.UpdateFuelData();
+             UIManager.Instance.pointer.Target = myClient._DropPoint.transform;
+             if (myClient)
+             {
+                 myClient._DropPoint.hasClient = true;
 
-        if (CommonReferences.Instance.myCar.pickedUpClients.Count < CommonReferences.Instance.myCar.BagSize)
-        {
-            Debug.Log("triggger definitely works");
-            myClient.SendInCar(Transporter);
-            CommonReferences.Instance.myCar.UpdateFuelData();
-            UIManager.Instance.pointer.Target = myClient._DropPoint.transform;
-        }
-        else
-        {
-            Debug.Log("car full");
-        }
+                 CommonReferences.Instance.myCar.dropPoint = myClient._DropPoint;
+
+             }
+
+             if (myClient.GetComponent<PhotonView>().IsMine || PhotonNetwork.IsMasterClient)
+             {
+                 PhotonNetwork.Destroy(myClient.gameObject);
+             }
+
+         }
+         else
+         {
+             Debug.Log("car full");
+         }*/
+        #endregion
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -47,6 +56,10 @@ public class SpawnPoint : MonoBehaviour
         {
             StayingNear = true;
             Transporter = collision.transform;
+            if (myClient)
+            {
+                myClient.PickupIcon.SetActive(!myClient.AllPickedUp);
+            }
         }
     }
 
@@ -58,6 +71,8 @@ public class SpawnPoint : MonoBehaviour
         {
             StayingNear = false;
             Transporter = null;
+            if(myClient)
+                myClient.PickupIcon.SetActive(false);
         }
     }
 

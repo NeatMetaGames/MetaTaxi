@@ -51,7 +51,9 @@ public class IndividualNpc : MonoBehaviour
 
     public void GetInCar(Transform car)
     {
-        StartCoroutine(GetInCarCO(car));
+        isPickedUp = true;
+        this.gameObject.SetActive(false);
+       // StartCoroutine(GetInCarCO(car));
     }
 
     IEnumerator GetInCarCO(Transform car)
@@ -68,17 +70,20 @@ public class IndividualNpc : MonoBehaviour
              }
              yield return new WaitForEndOfFrame();
          }*/
+       
         yield return new WaitForEndOfFrame();
-        this.gameObject.SetActive(false);
-        isPickedUp = true;
-        myClient._SpawnPoint.occupied = false;
+        
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.GetComponentInParent<PhotonView>() == null) return;
 
-        if (collision.transform.GetComponentInParent<PhotonView>().IsMine && (collision.transform.CompareTag("Player") || collision.transform.CompareTag("car")))
+       /* myClient._SpawnPoint.occupied = false;
+        myClient._DropPoint.myClients.Remove(myClient);
+        Destroy(myClient.gameObject);*/
+
+        /*if (collision.transform.GetComponentInParent<PhotonView>().IsMine && (collision.transform.CompareTag("Player") || collision.transform.CompareTag("car")))
         {
             if ((Mathf.Abs(myInput.GetHorizontalInput()) == 0 && Mathf.Abs(myInput.GetVerticalInput()) == 0))
             {
@@ -88,6 +93,6 @@ public class IndividualNpc : MonoBehaviour
             {
 
             }
-        }
-    }*/
+        }*/
+    }
 }

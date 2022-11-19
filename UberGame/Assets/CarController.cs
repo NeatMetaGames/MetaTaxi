@@ -44,7 +44,11 @@ public class CarController : MonoBehaviour,IPunObservable
     public float current_angle;
 
     public int BagSize = 1;
-    public List<Client> pickedUpClients = new List<Client>();
+    //public List<Client> pickedUpClients = new List<Client>();
+
+    public bool passengerPickedUp;
+    public DropPoint dropPoint;
+    public int reward;
 
 
     [Header("Car Fuel")]

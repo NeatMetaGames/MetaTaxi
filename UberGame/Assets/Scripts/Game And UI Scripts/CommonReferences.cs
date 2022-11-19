@@ -238,7 +238,7 @@ public class CommonReferences : MonoBehaviour
         spawnPoint.occupied = true;
 
         spawnPoint.myClient = SpawnedClient;
-        dropPoint.myClient.Add(SpawnedClient);
+        //dropPoint.myClients.Add(SpawnedClient);
 
 
         SpawnedClient._SpawnPoint = spawnPoint;
