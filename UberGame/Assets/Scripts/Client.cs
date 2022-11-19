@@ -122,6 +122,7 @@ public class Client : MonoBehaviour,IPunObservable
             else
             {
                 Debug.Log("Sent RPC");
+                this.gameObject.SetActive(false);
                 PV.RPC("DestroyThisNPC", RpcTarget.Others);
             }
         }
@@ -135,11 +136,11 @@ public class Client : MonoBehaviour,IPunObservable
     {
         if (PV != null)
         {
-            if (PV.IsMine || PhotonNetwork.IsMasterClient)
+            if (PV.IsMine)
             {
-
                 PhotonNetwork.Destroy(PV);
             }
+                _SpawnPoint.occupied = false;
         }
     }
 
