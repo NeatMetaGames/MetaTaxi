@@ -179,16 +179,20 @@ public class Client : MonoBehaviour,IPunObservable
     {
         if (stream.IsWriting)
         {
+            Debug.Log("Test 1 Sending");
             if (isInialized)
             {
+                Debug.Log("Test 2 Sending");
                 stream.SendNext(temp_spawnID);
                 stream.SendNext(temp_dropID);
             }
         }
         else if (stream.IsReading)
         {
+            Debug.Log("Test 1 Recieving");
             if (!isInialized)
             {
+                Debug.Log("Test 2 Recieving");
                 temp_spawnID =(int) stream.ReceiveNext();
                 temp_dropID = (int)stream.ReceiveNext();
                 SetClientData();
