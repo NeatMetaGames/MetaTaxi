@@ -80,6 +80,19 @@ public class Client : MonoBehaviour,IPunObservable
         entry.callback.AddListener((data) => { OnPointerClickDelegate((PointerEventData)data); });
         eventTrigger.triggers.Add(entry);
     }
+    public void EnableClientForOthers()
+    {
+        for (int i = 0; i < PassengerAmount; i++)
+        {
+            int temp = i;
+            passengers[temp].Initialize(temp);
+        }
+
+        EventTrigger eventTrigger = PickupIcon.transform.GetChild(0).gameObject.AddComponent<EventTrigger>();
+        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
+        entry.callback.AddListener((data) => { OnPointerClickDelegate((PointerEventData)data); });
+        eventTrigger.triggers.Add(entry);
+    }
 
     private void OnPointerClickDelegate(PointerEventData data)
     {
@@ -108,8 +121,8 @@ public class Client : MonoBehaviour,IPunObservable
             }
             else
             {
-
-                PV.RPC("DestroyThiNPC", RpcTarget.Others);
+                Debug.Log("Sent RPC");
+                PV.RPC("DestroyThisNPC", RpcTarget.Others);
             }
         }
         else
@@ -125,7 +138,7 @@ public class Client : MonoBehaviour,IPunObservable
             if (PV.IsMine || PhotonNetwork.IsMasterClient)
             {
 
-                PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.Destroy(PV);
             }
         }
     }
@@ -156,6 +169,7 @@ public class Client : MonoBehaviour,IPunObservable
             _SpawnPoint.occupied = true;
             _SpawnPoint.myClient = this;
 
+            EnableClientForOthers();
         }
     }
 
@@ -180,7 +194,8 @@ public class Client : MonoBehaviour,IPunObservable
         if (stream.IsWriting)
         {                       
                 stream.SendNext(temp_spawnID);
-                stream.SendNext(temp_dropID);            
+                stream.SendNext(temp_dropID);
+            stream.SendNext(PassengerAmount);
         }
         else if (stream.IsReading)
         {
@@ -190,6 +205,7 @@ public class Client : MonoBehaviour,IPunObservable
                                 
                     temp_spawnID =(int) stream.ReceiveNext();
                     temp_dropID =(int) stream.ReceiveNext();
+                PassengerAmount= (int)stream.ReceiveNext();
                 if (!isInialized) { 
                   //  Debug.Log(" Testing : " + test1 + " " + test2);
                     SetClientData();

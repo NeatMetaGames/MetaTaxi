@@ -368,7 +368,9 @@ MonoBehaviour:
   initial_offset: {x: 0, y: 0, z: 0}
   current_angle: 0
   BagSize: 1
-  pickedUpClients: []
+  passengerPickedUp: 0
+  dropPoint: {fileID: 0}
+  reward: 0
   currentFuel: 300
   maxFuel: 300
   FuelRegenerationRate: 1
