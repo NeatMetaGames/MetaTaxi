@@ -406,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PV: {fileID: 4583746752083264384}
   PassengerAmount: 1
+  RewardMultiplier: 1
   AllPickedUp: 0
   PickupIcon: {fileID: 8157402330623117051}
   passengers:

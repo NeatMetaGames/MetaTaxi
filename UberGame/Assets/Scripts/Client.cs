@@ -8,6 +8,7 @@ public class Client : MonoBehaviour,IPunObservable
 {
     [SerializeField] PhotonView PV;
     public int PassengerAmount = 1;
+    public float RewardMultiplier;
     public bool AllPickedUp = false;
     public GameObject PickupIcon;
     public List<IndividualNpc> passengers = new List<IndividualNpc>();
@@ -31,7 +32,7 @@ public class Client : MonoBehaviour,IPunObservable
 
 
                     int reward = 0;
-                    reward = (int)Vector2.Distance(_SpawnPoint.transform.position, _DropPoint.transform.position);
+                    reward = (int)(Vector2.Distance(_SpawnPoint.transform.position, _DropPoint.transform.position) * Mathf.Pow(1, PassengerAmount) * RewardMultiplier);
                     CommonReferences.Instance.myCar.reward = reward;
                     CommonReferences.Instance.myCar.passengerPickedUp = true;
                     _DropPoint.DropPointSprite.gameObject.SetActive(true);
