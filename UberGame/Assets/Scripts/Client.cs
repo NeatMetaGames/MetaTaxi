@@ -112,6 +112,7 @@ public class Client : MonoBehaviour,IPunObservable
             _DropPoint.hasClient = true;
 
             CommonReferences.Instance.myCar.dropPoint = _DropPoint;
+            StartCoroutine(UIManager.Instance.tutorialCO("find destination"));
 
 
 
@@ -136,11 +137,11 @@ public class Client : MonoBehaviour,IPunObservable
     {
         if (PV != null)
         {
+            _SpawnPoint.occupied = false;
             if (PV.IsMine)
             {
                 PhotonNetwork.Destroy(PV);
             }
-                _SpawnPoint.occupied = false;
         }
     }
 

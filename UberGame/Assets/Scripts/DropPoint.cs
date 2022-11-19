@@ -34,6 +34,15 @@ public class DropPoint : MonoBehaviour
     private void Update()
     {
         if (!hasClient) return;
+
+        if (!UIManager.Instance.Step[10].SkipThisStep && !UIManager.Instance.Step[10].AdminSkip)
+        {
+            if (isOffScreen()) return;
+
+            StartCoroutine(UIManager.Instance.tutorialCO("found destination"));
+            UIManager.Instance.Step[10].ObjectToPoint = this.transform;
+        }
+        
         if (StayingNear)
         {
             if (UIManager.Instance.getStatedeliveredUI) { delayTimer = 0; return; }
@@ -47,8 +56,10 @@ public class DropPoint : MonoBehaviour
                     /*CommonReferences.Instance.myCar.pickedUpClients.Remove(myClients[0]);
                     Destroy(myClients[0].gameObject);*/
                     //myClients.RemoveAt(0);
-
+                    StartCoroutine(UIManager.Instance.tutorialCO("dropped people"));
                     Debug.Log("give Reward here" + CommonReferences.Instance.myCar.reward);
+
+                    UIManager.Instance.ShowOrderDeliveredPanel(CommonReferences.Instance.myCar.reward);
                     CommonReferences.Instance.myCar.passengerPickedUp = false;
                     CommonReferences.Instance.myCar.dropPoint = null;
                     CommonReferences.Instance.myCar.reward = 0;
@@ -62,5 +73,12 @@ public class DropPoint : MonoBehaviour
         {
             delayTimer = 0;
         }
+    }
+
+    private bool isOffScreen()
+    {
+        Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(this.transform.position);
+        bool isOffScreen = targetPositionScreenPoint.x <= 300 || targetPositionScreenPoint.x >= Screen.width - 300 || targetPositionScreenPoint.y <= 300 || targetPositionScreenPoint.y >= Screen.height - 300;
+        return isOffScreen;
     }
 }

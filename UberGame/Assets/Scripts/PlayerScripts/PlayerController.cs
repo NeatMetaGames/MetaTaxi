@@ -193,6 +193,8 @@ public class PlayerController : MonoBehaviour,IPunObservable
             //Debug.Log(_input.GetInteractButton());
             TogglePlayer(false);
             myCar.ToggleCar(true);
+
+            StartCoroutine(UIManager.Instance.tutorialCO("find people"));
             
             CommonReferences.Instance.SwitchCamera(CAMERA_TYPE.CAR);
         }

@@ -58,8 +58,21 @@ public class SpawnPoint : MonoBehaviour
             Transporter = collision.transform;
             if (myClient)
             {
+                var Step = UIManager.Instance.Step;
+                int ID = Step.FindIndex(x => x.Code == "pick up");
+                if (!Step[ID].SkipThisStep && !Step[ID].AdminSkip)
+                {
+                    StartCoroutine(UIManager.Instance.tutorialCO("pick up"));
+                    Step[ID].ObjectToPoint = myClient.PickupIcon.transform;
+                }
+
                 myClient.PickupIcon.SetActive(!myClient.AllPickedUp);
             }
+        }
+
+        if(collision.GetComponentInParent<PhotonView>().IsMine && collision.CompareTag("Player"))
+        {
+            UIManager.Instance.ShowInformationMsg("Come With A Car!" , 5);
         }
     }
 
@@ -76,9 +89,25 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
-  /*  private void Update()
+
+    private bool isOffScreen()
     {
-        if (myClient == null || myClient.AllPickedUp) return;
+        Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(this.transform.position);
+        bool isOffScreen = targetPositionScreenPoint.x <= 300 || targetPositionScreenPoint.x >= Screen.width - 300 || targetPositionScreenPoint.y <= 300 || targetPositionScreenPoint.y >= Screen.height - 300;
+        return isOffScreen;
+    }
+    private void Update()
+    {
+
+
+        if (!UIManager.Instance.Step[7].SkipThisStep && !UIManager.Instance.Step[7].AdminSkip)
+        {
+            if (isOffScreen()) return;
+            StartCoroutine(UIManager.Instance.tutorialCO("found people"));
+            UIManager.Instance.Step[7].ObjectToPoint = myClient.transform;
+        }
+        
+       /* if (myClient == null || myClient.AllPickedUp) return;
         if (StayingNear)
         {
             if (UIManager.Instance.getStatedeliveredUI) { delayTimer = 0; return; }
@@ -100,7 +129,7 @@ public class SpawnPoint : MonoBehaviour
         else
         {
             delayTimer = 0;
-        }
-    }*/
+        }*/
+    }
 
 }
