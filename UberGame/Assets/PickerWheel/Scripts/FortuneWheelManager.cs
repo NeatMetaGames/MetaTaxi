@@ -67,22 +67,26 @@ public class FortuneWheelManager : MonoBehaviour
 
     async public void Spin()
     {
-        MessageBox.insta.showMsg("Getting Random Number! \n Please wait and confirm transaction.", false);
-        int number = await CoreWeb3Manager.Instance.GetRandomNumber();
-        Debug.Log("Random Number Is "+ number);
-        if (number == -1) {
-            MessageBox.insta.showMsg("Unable to get random number at this moment! Please try again later.", true);
-            
-            Debug.Log("Return unable to generate random no");
-            LeanTween.scale(PopupMessage, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInQuad).setOnComplete(() => {
-                UIManager.Instance.ToggleSpinUI(false);
-            });
-            return;
-        }
-        else
-        {
-            MessageBox.insta.hideMsg();
-        }
+        /* MessageBox.insta.showMsg("Getting Random Number! \n Please wait and confirm transaction.", false);
+         int number = await CoreWeb3Manager.Instance.GetRandomNumber();
+         Debug.Log("Random Number Is "+ number);
+         if (number == -1) {
+             MessageBox.insta.showMsg("Unable to get random number at this moment! Please try again later.", true);
+
+             Debug.Log("Return unable to generate random no");
+             LeanTween.scale(PopupMessage, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInQuad).setOnComplete(() => {
+                 UIManager.Instance.ToggleSpinUI(false);
+             });
+             return;
+         }
+         else
+         {
+             MessageBox.insta.hideMsg();
+         }*/
+
+        int number = Random.Range(0, 6);
+        Debug.Log("Random Number Is " + number);
+
         for (int i = 0; i < wheel.wheelPieces.Length; i++)
         {
 
