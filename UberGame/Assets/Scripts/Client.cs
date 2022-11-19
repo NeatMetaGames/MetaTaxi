@@ -178,24 +178,22 @@ public class Client : MonoBehaviour,IPunObservable
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
-        {
-            Debug.Log("Test 1 Sending");
-            if (isInialized)
-            {
-                Debug.Log("Test 2 Sending");
+        {                       
                 stream.SendNext(temp_spawnID);
-                stream.SendNext(temp_dropID);
-            }
+                stream.SendNext(temp_dropID);            
         }
         else if (stream.IsReading)
         {
-            Debug.Log("Test 1 Recieving");
-            if (!isInialized)
+            if (!PV.IsMine)
             {
-                Debug.Log("Test 2 Recieving");
-                temp_spawnID =(int) stream.ReceiveNext();
-                temp_dropID = (int)stream.ReceiveNext();
-                SetClientData();
+               
+                                
+                    temp_spawnID =(int) stream.ReceiveNext();
+                    temp_dropID =(int) stream.ReceiveNext();
+                if (!isInialized) { 
+                  //  Debug.Log(" Testing : " + test1 + " " + test2);
+                    SetClientData();
+                }
             }
         }
     }
