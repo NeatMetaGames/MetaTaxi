@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Client : MonoBehaviour
+public class Client : MonoBehaviour,IPunObservable
 {
     [SerializeField] PhotonView PV;
     public int PassengerAmount = 1;
@@ -133,6 +133,8 @@ public class Client : MonoBehaviour
     [PunRPC]
     public void EnableThisClient(int spawn_id,int drop_id)
     {
+       
+
         _SpawnPoint = CommonReferences.SpawnPoints[spawn_id];
         _DropPoint = CommonReferences.DropPoints[drop_id];
 
@@ -141,8 +143,28 @@ public class Client : MonoBehaviour
         
     }
 
+    public void SetClientData()
+    {
+        if (!isInialized)
+        {
+            if (temp_dropID == -1 || temp_spawnID == -1) return;
+            isInialized = true;
 
-public void SendInCar(Transform car)
+            _SpawnPoint = CommonReferences.SpawnPoints[temp_spawnID];
+            _DropPoint = CommonReferences.DropPoints[temp_dropID];
+
+            _SpawnPoint.occupied = true;
+            _SpawnPoint.myClient = this;
+
+        }
+    }
+
+
+    public int temp_spawnID=-1;
+    public int temp_dropID=-1;
+
+    public bool isInialized=false;
+    public void SendInCar(Transform car)
     {
         for (int i = 0; i < PassengerAmount; i++)
         {
@@ -151,5 +173,26 @@ public void SendInCar(Transform car)
             Debug.Log("passenger", passengers[temp]);
         }
         PickupIcon.SetActive(false);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            if (isInialized)
+            {
+                stream.SendNext(temp_spawnID);
+                stream.SendNext(temp_dropID);
+            }
+        }
+        else if (stream.IsReading)
+        {
+            if (!isInialized)
+            {
+                temp_spawnID =(int) stream.ReceiveNext();
+                temp_dropID = (int)stream.ReceiveNext();
+                SetClientData();
+            }
+        }
     }
 }

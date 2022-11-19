@@ -253,16 +253,19 @@ public class CommonReferences : MonoBehaviour
 
         var SpawnedClient = PhotonNetwork.Instantiate("NPC" , spawnPoint.transform.position , Quaternion.identity).GetComponent<Client>();
 
-        PhotonView clientPV = spawnPoint.GetComponent<PhotonView>();
+        PhotonView clientPV = SpawnedClient.GetComponent<PhotonView>();
         clientPV.RPC("EnableThisClient", RpcTarget.Others, orignalSpawnId, randomDropPointID);
 
         SpawnedClient._SpawnPoint = spawnPoint;
         SpawnedClient._DropPoint = dropPoint;
+        SpawnedClient.temp_dropID = randomDropPointID;
+        SpawnedClient.temp_spawnID = randomSpawnPointID;
 
 
         spawnPoint.occupied = true;
 
         spawnPoint.myClient = SpawnedClient;
+        SpawnedClient.isInialized = true;
         //dropPoint.myClients.Add(SpawnedClient);
 
 
