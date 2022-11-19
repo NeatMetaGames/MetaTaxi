@@ -98,13 +98,14 @@ public class SpawnPoint : MonoBehaviour
     }
     private void Update()
     {
-
+        if (myClient == null) return;
 
         if (!UIManager.Instance.Step[7].SkipThisStep && !UIManager.Instance.Step[7].AdminSkip)
         {
             if (isOffScreen()) return;
             StartCoroutine(UIManager.Instance.tutorialCO("found people"));
-            UIManager.Instance.Step[7].ObjectToPoint = myClient.transform;
+           
+                UIManager.Instance.Step[7].ObjectToPoint = myClient.transform;
         }
         
        /* if (myClient == null || myClient.AllPickedUp) return;

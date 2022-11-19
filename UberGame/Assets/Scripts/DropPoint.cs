@@ -9,6 +9,7 @@ public class DropPoint : MonoBehaviour
     public bool hasClient;
     private bool StayingNear = false;
     [SerializeField] private float delayTimer;
+    [SerializeField] public SpriteRenderer DropPointSprite;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

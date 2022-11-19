@@ -78,6 +78,7 @@ public class UIManager : MonoBehaviour
             if (Object.TryGetComponent<CanvasGroup>(out CanvasGroup CG))
             {
                 LeanTween.alphaCanvas(CG, 0, 0.5f).setLoopPingPong(3);
+                LeanTween.scale(CG.gameObject, CG.GetComponent<RectTransform>().localScale * 1.5f, 0.5f).setLoopPingPong(3);
             }
             else
             {
@@ -122,13 +123,9 @@ public class UIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+
         if (PlayingTutorial && !Step[ID].SkipThisStep && !Step[ID].AdminSkip)
         {
-            /*if (StepCode == "find restaurant")
-            {
-                CommonReferences.Instance.myPlayer.DisableInputs = true;
-                CommonReferences.Instance.myCar.DisableInputs = true;
-            }*/
             OpenTutorialPanel(ID);
         }
     }
