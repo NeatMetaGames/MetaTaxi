@@ -254,6 +254,14 @@ public class UIManager : MonoBehaviour
         //COINS DEDUCT
 
         CommonReferences.Instance.myCar.RechargeFuel();
+        if (CommonReferences.Instance.myCar.dropPoint)
+        {
+            pointer.Target = CommonReferences.Instance.myCar.dropPoint.transform;
+        }
+        else
+        {
+            UIManager.Instance.pointer.Target = null;
+        }
     }
     #endregion
    /* public void OpenFoodPanel(GameObject panel)

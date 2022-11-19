@@ -134,6 +134,7 @@ public class Client : MonoBehaviour,IPunObservable
         else
         {
             Debug.Log("car full");
+            UIManager.Instance.ShowInformationMsg("Car Already Full, Drop the Passengers First", 3);
         }
     }
     [PunRPC]

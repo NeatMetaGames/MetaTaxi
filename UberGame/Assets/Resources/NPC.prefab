@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7648815436294319377}
   - component: {fileID: 3742049267564527247}
   - component: {fileID: 5505353281388596714}
+  - component: {fileID: 7975386775469964424}
+  - component: {fileID: 8926320519310158466}
   m_Layer: 6
   m_Name: Passenger 2
   m_TagString: Untagged
@@ -123,6 +125,43 @@ MonoBehaviour:
   - {fileID: -77749617446113257, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   - {fileID: 5324918645350610075, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   mySprite: {fileID: 7648815436294319377}
+--- !u!50 &7975386775469964424
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771681573478336777}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &8926320519310158466
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771681573478336777}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1 &2186115286647807296
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +174,8 @@ GameObject:
   - component: {fileID: 5361700841691891986}
   - component: {fileID: 5335517570017938693}
   - component: {fileID: 6240590261811343268}
+  - component: {fileID: 3834477622937354055}
+  - component: {fileID: 8018942658300846477}
   m_Layer: 6
   m_Name: Passenger 4
   m_TagString: Untagged
@@ -246,6 +287,43 @@ MonoBehaviour:
   - {fileID: -77749617446113257, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   - {fileID: 5324918645350610075, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   mySprite: {fileID: 5361700841691891986}
+--- !u!50 &3834477622937354055
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2186115286647807296}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &8018942658300846477
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2186115286647807296}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1 &4791384596321407624
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +624,8 @@ GameObject:
   - component: {fileID: 7629117062871293947}
   - component: {fileID: 3697369612363117807}
   - component: {fileID: 8257204391028009586}
+  - component: {fileID: 1266975164733271418}
+  - component: {fileID: 6200350838887066567}
   m_Layer: 6
   m_Name: Passenger 5
   m_TagString: Untagged
@@ -657,6 +737,43 @@ MonoBehaviour:
   - {fileID: -77749617446113257, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   - {fileID: 5324918645350610075, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   mySprite: {fileID: 7629117062871293947}
+--- !u!50 &1266975164733271418
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702957870098256067}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &6200350838887066567
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702957870098256067}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1 &6795433241723089174
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +949,8 @@ GameObject:
   - component: {fileID: 4140728207575951819}
   - component: {fileID: 2502929450890593206}
   - component: {fileID: 8335024090268618105}
+  - component: {fileID: 342963707051258433}
+  - component: {fileID: 5576214173074766793}
   m_Layer: 6
   m_Name: Passenger 3
   m_TagString: Untagged
@@ -943,6 +1062,43 @@ MonoBehaviour:
   - {fileID: -77749617446113257, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   - {fileID: 5324918645350610075, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   mySprite: {fileID: 4140728207575951819}
+--- !u!50 &342963707051258433
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983902208554178142}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &5576214173074766793
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983902208554178142}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1 &9035946771021580274
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +1111,8 @@ GameObject:
   - component: {fileID: 8309488684650017618}
   - component: {fileID: 4442911827662417177}
   - component: {fileID: 1034565247761556108}
+  - component: {fileID: 6251028232755765871}
+  - component: {fileID: 4058227826900040553}
   m_Layer: 6
   m_Name: Passenger 1
   m_TagString: Untagged
@@ -1066,3 +1224,40 @@ MonoBehaviour:
   - {fileID: -77749617446113257, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   - {fileID: 5324918645350610075, guid: 8a7550289ec214f48bfec38fb7bd12da, type: 3}
   mySprite: {fileID: 8309488684650017618}
+--- !u!50 &6251028232755765871
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035946771021580274}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &4058227826900040553
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035946771021580274}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  serializedVersion: 2
+  m_Radius: 0.25

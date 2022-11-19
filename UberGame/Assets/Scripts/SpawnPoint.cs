@@ -72,7 +72,7 @@ public class SpawnPoint : MonoBehaviour
 
         if(collision.GetComponentInParent<PhotonView>().IsMine && collision.CompareTag("Player"))
         {
-            UIManager.Instance.ShowInformationMsg("Come With A Car!" , 5);
+            UIManager.Instance.ShowInformationMsg("Come With A Car" , 3);
         }
     }
 

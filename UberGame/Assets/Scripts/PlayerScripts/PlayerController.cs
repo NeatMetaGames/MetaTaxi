@@ -199,7 +199,15 @@ public class PlayerController : MonoBehaviour,IPunObservable
             myCar.ToggleCar(true);
 
             StartCoroutine(UIManager.Instance.tutorialCO("find people"));
-            
+            if (CommonReferences.Instance.myCar.dropPoint)
+            {
+                UIManager.Instance.pointer.Target = CommonReferences.Instance.myCar.dropPoint.transform;
+            }
+            else
+            {
+                UIManager.Instance.pointer.Target = null;
+            }
+
             CommonReferences.Instance.SwitchCamera(CAMERA_TYPE.CAR);
         }
 
