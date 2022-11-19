@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
             //Debug.Log("Its NOT over UI elements");
             if (Input.GetMouseButtonDown(0))
             {
-                CloseFoodPanels();
+               // CloseFoodPanels();
             }
         }        
     }
