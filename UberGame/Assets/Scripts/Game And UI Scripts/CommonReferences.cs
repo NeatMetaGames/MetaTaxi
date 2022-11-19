@@ -216,24 +216,49 @@ public class CommonReferences : MonoBehaviour
     }
     #endregion
 
+    bool firstClient = true;
     public void SpawnClient()
     {
         List<SpawnPoint> freeSpawnPoints = new List<SpawnPoint>();
         foreach (var item in SpawnPoints)
         {
             if (!item.occupied)
-                freeSpawnPoints.Add(item);
+            {
+                if (firstClient)
+                {
+                    if (Vector2.Distance(item.transform.position, myCar.transform.position) < 50)
+                    {
+                        freeSpawnPoints.Add(item);
+                        firstClient = false;
+                    }
+                }
+                else
+                    freeSpawnPoints.Add(item);
+            }
         }
-        if (freeSpawnPoints.Count == 0) return;
+        if (freeSpawnPoints.Count == 0)
+        {
+            Debug.Log("no spawn point found");
+            Invoke(nameof(SpawnClient), 2.5f);
+            return;
+        }
 
 
         var randomSpawnPointID = Random.Range(0, freeSpawnPoints.Count);
         var spawnPoint = freeSpawnPoints[randomSpawnPointID];
+        int orignalSpawnId = SpawnPoints.IndexOf(spawnPoint);
 
         var randomDropPointID = Random.Range(0, DropPoints.Count);
         var dropPoint = DropPoints[randomDropPointID];
 
         var SpawnedClient = PhotonNetwork.Instantiate("NPC" , spawnPoint.transform.position , Quaternion.identity).GetComponent<Client>();
+
+        PhotonView clientPV = spawnPoint.GetComponent<PhotonView>();
+        clientPV.RPC("EnableThisClient", RpcTarget.Others, orignalSpawnId, randomDropPointID);
+
+        SpawnedClient._SpawnPoint = spawnPoint;
+        SpawnedClient._DropPoint = dropPoint;
+
 
         spawnPoint.occupied = true;
 
@@ -241,8 +266,6 @@ public class CommonReferences : MonoBehaviour
         //dropPoint.myClients.Add(SpawnedClient);
 
 
-        SpawnedClient._SpawnPoint = spawnPoint;
-        SpawnedClient._DropPoint = dropPoint;
 
         
         SpawnedClient.EnableClient();

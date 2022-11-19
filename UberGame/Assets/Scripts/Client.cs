@@ -124,9 +124,21 @@ public class Client : MonoBehaviour
         {
             if (PV.IsMine || PhotonNetwork.IsMasterClient)
             {
+
                 PhotonNetwork.Destroy(this.gameObject);
             }
         }
+    }
+
+    [PunRPC]
+    public void EnableThisClient(int spawn_id,int drop_id)
+    {
+        _SpawnPoint = CommonReferences.SpawnPoints[spawn_id];
+        _DropPoint = CommonReferences.DropPoints[drop_id];
+
+        _SpawnPoint.occupied = true;
+        _SpawnPoint.myClient = this;
+        
     }
 
 
