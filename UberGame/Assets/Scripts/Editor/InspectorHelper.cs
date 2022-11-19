@@ -13,9 +13,9 @@ public class RestaurantHelper : Editor
         DrawDefaultInspector();
         CommonReferences _CRSomething = (CommonReferences)target;
 
-        if (GUILayout.Button("ToggleMap"))
+        if (GUILayout.Button("Spawn Client"))
         {
-            _CRSomething.ToggleMap();
+            _CRSomething.SpawnClient();
         }
     }
 }

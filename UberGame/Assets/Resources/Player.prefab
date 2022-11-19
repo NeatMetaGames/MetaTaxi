@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 8711985498905768949}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d680a8d1abea6c84fb4676b7a0db0175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 0}
   speed: 3
   canMove: 0
   selected_car: 0

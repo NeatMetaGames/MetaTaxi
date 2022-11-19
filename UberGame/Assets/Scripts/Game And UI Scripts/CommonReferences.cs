@@ -11,10 +11,12 @@ public class CommonReferences : MonoBehaviour
 
     
     public static CommonReferences Instance;
+    public Transform SpawnPointsParent;
     public Transform DropPointsParent;
     public Transform GasStationparent;
 
-    public static List<House> Houses = new List<House>();
+    public static List<DropPoint> DropPoints = new List<DropPoint>();
+    public static List<SpawnPoint> SpawnPoints = new List<SpawnPoint>();
     public static List<Transform> GasStations = new List<Transform>();
 
     public Transform OrderUIParent;
@@ -165,14 +167,22 @@ public class CommonReferences : MonoBehaviour
 
         PhotonNetwork.SendRate = 10;
 
-        #region populate houses
+        #region Populate SpawnPoints
+        int SpawnCount = SpawnPointsParent.childCount;
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            int temp = i;
+            var s = SpawnPointsParent.GetChild(temp).GetComponent<SpawnPoint>();
+            SpawnPoints.Add(s);
+        }
+        #endregion
+        #region populate DropPoints
         int HouseCount = DropPointsParent.childCount;
         for (int i = 0; i < HouseCount; i++)
         {
             int temp = i;
-            var h = DropPointsParent.GetChild(temp).GetComponent<House>(); 
-            Houses.Add(h);
-            //PendingOrdersForHouse.Add(0);
+            var d = DropPointsParent.GetChild(temp).GetComponent<DropPoint>(); 
+            DropPoints.Add(d);
         }
         #endregion
         #region populate GasStations
@@ -205,6 +215,38 @@ public class CommonReferences : MonoBehaviour
         
     }
     #endregion
+
+    public void SpawnClient()
+    {
+        List<SpawnPoint> freeSpawnPoints = new List<SpawnPoint>();
+        foreach (var item in SpawnPoints)
+        {
+            if (!item.occupied)
+                freeSpawnPoints.Add(item);
+        }
+        if (freeSpawnPoints.Count == 0) return;
+
+
+        var randomSpawnPointID = Random.Range(0, freeSpawnPoints.Count);
+        var spawnPoint = freeSpawnPoints[randomSpawnPointID];
+
+        var randomDropPointID = Random.Range(0, DropPoints.Count);
+        var dropPoint = DropPoints[randomDropPointID];
+
+        var SpawnedClient = PhotonNetwork.Instantiate("NPC" , spawnPoint.transform.position , Quaternion.identity).GetComponent<Client>();
+
+        spawnPoint.occupied = true;
+
+        spawnPoint.myClient = SpawnedClient;
+        dropPoint.myClient.Add(SpawnedClient);
+
+
+        SpawnedClient._SpawnPoint = spawnPoint;
+        SpawnedClient._DropPoint = dropPoint;
+
+        
+        SpawnedClient.EnableClient();
+    }
 }
 
 public enum CAMERA_TYPE

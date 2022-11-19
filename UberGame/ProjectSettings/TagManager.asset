@@ -6,7 +6,6 @@ TagManager:
   tags:
   - car
   - gas_station
-  - Restaurant
   - House
   layers:
   - Default
@@ -15,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Clients
   - 
   - 
   - 

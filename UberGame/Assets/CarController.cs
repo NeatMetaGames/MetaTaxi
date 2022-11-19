@@ -43,12 +43,14 @@ public class CarController : MonoBehaviour,IPunObservable
     public Vector3 initial_offset;
     public float current_angle;
 
-    public int BagSize = 3;
+    public int BagSize = 1;
+    public List<Client> pickedUpClients = new List<Client>();
 
 
     [Header("Car Fuel")]
     [SerializeField] public float currentFuel;
     [SerializeField] public float maxFuel;
+    [SerializeField] public float FuelRegenerationRate;
 
 
 
@@ -88,6 +90,10 @@ public class CarController : MonoBehaviour,IPunObservable
     private void Update()
     {
         if (!pv.IsMine) return;
+
+        currentFuel += Time.deltaTime * FuelRegenerationRate;
+        currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
+
         if (DisableInputs) return;
 
         if (canDrive && _input.GetInteractButton() )

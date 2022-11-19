@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour,IPunObservable
 {
-    private PlayerInput _input;
+    public PlayerInput _input;
     private Rigidbody2D _rb2d;
     private Animator _animator;
     private PhotonView PV;
