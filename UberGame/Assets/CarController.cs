@@ -211,19 +211,22 @@ public class CarController : MonoBehaviour,IPunObservable
         colliderObject.AddComponent<PolygonCollider2D>();
 
     }
-   
+
+    float temp_speed=0;
     private void Move()
     {
 
         if (DisableInputs)
         {
-            _rb2d.drag = Mathf.Lerp(_rb2d.drag, 3f, Time.fixedDeltaTime * 3);
+            _rb2d.drag = Mathf.Lerp(_rb2d.drag, 5f, Time.fixedDeltaTime * 3);
+            temp_speed = 0;
             return;
         }
 
         if (currentFuel <= 0)
         {
             _rb2d.drag = Mathf.Lerp(_rb2d.drag, 3f, Time.fixedDeltaTime * 3);
+            temp_speed = 0;
             return;
         }
 
@@ -231,7 +234,8 @@ public class CarController : MonoBehaviour,IPunObservable
 
         if (_input.GetVerticalInput() == 0)
         {
-            _rb2d.drag = Mathf.Lerp(_rb2d.drag, 3f, Time.fixedDeltaTime * 3);
+            _rb2d.drag = Mathf.Lerp(_rb2d.drag, 5f, Time.fixedDeltaTime * 3);
+            temp_speed = 0;
             return;
         }
         else
@@ -280,8 +284,8 @@ public class CarController : MonoBehaviour,IPunObservable
             }
         }
 
-
-        _rb2d.velocity = Vector3.Lerp(_rb2d.velocity,desiredVelocity * speed * _input.GetVerticalInput() ,Time.fixedDeltaTime * 5);
+        temp_speed = Mathf.Lerp(temp_speed, speed, Time.deltaTime);
+        _rb2d.velocity = Vector3.Lerp(_rb2d.velocity,desiredVelocity * temp_speed * _input.GetVerticalInput() ,Time.fixedDeltaTime * 5);
 
 
 
