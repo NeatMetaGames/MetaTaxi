@@ -30,6 +30,11 @@ public class UIPointer : MonoBehaviour
                     //CAR ICON
                     ChangeIcon(1);
                 }
+
+                else
+                {
+                    ChangeIcon(2);
+                }
             }
         }
     }
