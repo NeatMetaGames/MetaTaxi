@@ -484,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a709caf951ccf64f8ce1e5d0908d9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PV: {fileID: 4583746752083264384}
   PassengerAmount: 1
   AllPickedUp: 0
   PickupIcon: {fileID: 8157402330623117051}

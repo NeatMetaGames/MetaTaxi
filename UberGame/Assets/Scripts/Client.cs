@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Client : MonoBehaviour
 {
-
+    [SerializeField] PhotonView PV;
     public int PassengerAmount = 1;
     public bool AllPickedUp = false;
     public GameObject PickupIcon;
@@ -102,19 +102,30 @@ public class Client : MonoBehaviour
 
 
 
-            if (GetComponent<PhotonView>().IsMine || PhotonNetwork.IsMasterClient)
+            if (PV.IsMine || PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.Destroy(this.gameObject);
             }
             else
             {
 
+                PV.RPC("DestroyThiNPC", RpcTarget.Others);
             }
-
         }
         else
         {
             Debug.Log("car full");
+        }
+    }
+    [PunRPC]
+    public void DestroyThisNPC()
+    {
+        if (PV != null)
+        {
+            if (PV.IsMine || PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+            }
         }
     }
 
