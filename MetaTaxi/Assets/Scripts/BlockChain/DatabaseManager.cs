@@ -60,7 +60,7 @@ public class DatabaseManager : MonoBehaviour
                 else
                 {
                     data = new LocalData();
-                    data.all_cars_fuel = new float[12];
+                    data.all_cars_fuel = new float[6];
                     for (int i = 0; i < data.all_cars_fuel.Length; i++)
                     {
                         data.all_cars_fuel[i] = AllCarInfo.Instance.allCarInfo[i].maxFuelCapacity;

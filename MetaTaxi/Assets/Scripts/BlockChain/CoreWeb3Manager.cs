@@ -378,7 +378,7 @@ public class CoreWeb3Manager : MonoBehaviour
         string args = Newtonsoft.Json.JsonConvert.SerializeObject(inputParams);
         try
         {
-            string response = await EVM.Call(chain, network, contract, abi, method, args);
+            string response = await EVM.Call(chain, network, contract, abi, method, args,networkRPC);
             Debug.Log(response);
             return response;
 
@@ -458,7 +458,7 @@ public class CoreWeb3Manager : MonoBehaviour
         try
         {
 
-            string response = await EVM.BalanceOf(chain, network, PlayerPrefs.GetString("Account"));
+            string response = await EVM.BalanceOf(chain, network, PlayerPrefs.GetString("Account"),networkRPC);
             if (!string.IsNullOrEmpty(response))
             {
                 float wei = float.Parse(response);
@@ -486,7 +486,7 @@ public class CoreWeb3Manager : MonoBehaviour
     {
         try
         {
-            string txConfirmed = await EVM.TxStatus(chain, network, transID);
+            string txConfirmed = await EVM.TxStatus(chain, network, transID, networkRPC);
             print(txConfirmed); // success, fail, pending
             if (txConfirmed.Equals("success") || txConfirmed.Equals("fail"))
             {
@@ -511,7 +511,7 @@ public class CoreWeb3Manager : MonoBehaviour
     {
         try
         {
-            string txConfirmed = await EVM.TxStatus(chain, network, Id);
+            string txConfirmed = await EVM.TxStatus(chain, network, Id,networkRPC);
             print(txConfirmed); // success, fail, pending
             if (txConfirmed.Equals("success") || txConfirmed.Equals("fail"))
             {
