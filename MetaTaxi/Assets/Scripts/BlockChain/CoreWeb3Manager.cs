@@ -67,13 +67,15 @@ public class CoreWeb3Manager : MonoBehaviour
     [SerializeField] GameObject[] toDisableObjectsAfterLogin;
 
    
-    
+   
 
 
     private void Start()
     {
         //LoginWallet();
         //TestIT();
+
+        Application.targetFrameRate = 45;
         
     }
 
