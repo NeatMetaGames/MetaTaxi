@@ -2,14 +2,14 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-UberGame/[Ll]ibrary/
+MetaTaxi/[Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
-UberGame/[Bb]uild/
-UberGame/[Bb]uilds/
+MetaTaxi/[Bb]uild/
+MetaTaxi/[Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
-UberGame_*/
+MetaTaxi_*/
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
