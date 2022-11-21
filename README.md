@@ -36,7 +36,7 @@ https://testnet.aurorascan.dev/address/0x27015D7B4aee78Ab0356B6b07Fa2736020751a9
 https://testnet.aurorascan.dev/address/0xf0c285bd506aED1bC737346752D4401EcFc9bFFC
 
 ### Meta Taxi
-[![Meta Taxi](/Images/MT1.jpg)](https://www.youtube.com/watch?v=RJ9-6xQWM4Q)
+[![Meta Taxi](https://img.youtube.com/vi/RJ9-6xQWM4Q/0.jpg)](https://www.youtube.com/watch?v=RJ9-6xQWM4Q)
 ![Meta Taxi](/Images/MT2.jpg)
 ![Meta Taxi](/Images/MT3.jpg)
 ![Meta Taxi](/Images/MT4.jpg)
