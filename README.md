@@ -20,7 +20,7 @@ https://bafybeieanfv22chqeulmmt56gp5acos3vi3ryioncrkenacfi5sauv5wxa.ipfs.gateway
 
 ## Technologies
 - Unity game engine
-- [Aurora (Testnet) for in-game purchase, cars NFT and reward token ERC-20, exchange token]()
+- [Aurora (Testnet) for in-game purchase, cars NFT and reward token ERC-20, exchange token](https://github.com/NeatMetaGames/MetaTaxi/blob/main/Near.md)
 - Remix IDE used to create smart contract for ERC-1155 NFT and In-app store
 - Iluustrator
 - Canva

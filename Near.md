@@ -17,6 +17,8 @@ https://testnet.aurorascan.dev/address/0xf0c285bd506aED1bC737346752D4401EcFc9bFF
 
 
 ### Smart contract source code
+https://github.com/NeatMetaGames/MetaTaxi/blob/main/MetaTaxi/Contract/Contract1.txt
+https://github.com/NeatMetaGames/MetaTaxi/blob/main/MetaTaxi/Contract/Contract2.txt
 
 ![Use](/Images/MTC_1.jpg)
 ![Use](/Images/MTC_2.jpg)
