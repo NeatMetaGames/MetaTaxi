@@ -68,7 +68,7 @@ public class DayNightSystem2D : MonoBehaviour
 
     void Start() 
     {
-        dayCycle = DayCycles.Sunrise; // start with sunrise state
+        dayCycle = DayCycles.Day; // start with sunrise state
         globalLight.color = sunrise.Evaluate(1); // start global color at sunrise
     }
     bool hasToChangeBloom=true;

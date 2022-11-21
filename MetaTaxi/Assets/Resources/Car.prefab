@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -111694341
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1b6acc042d602854c859cd3705ab6975, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46d09af4108d34040a6a24240ed18f35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: -111694341
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1c20d07fc9a9c1c419ccb787821b4487, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46d09af4108d34040a6a24240ed18f35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -344,22 +344,22 @@ MonoBehaviour:
   stoppingTime: 3
   turnAmount: 22.5
   car_sprites:
-  - {fileID: 21300000, guid: 1b6acc042d602854c859cd3705ab6975, type: 3}
-  - {fileID: 21300000, guid: cec635cf53bfa604bae684c9982e2aa4, type: 3}
-  - {fileID: 21300000, guid: 798dbe8ce26b04e41973ab302dc50a8b, type: 3}
-  - {fileID: 21300000, guid: 5cfdcdfc4d9fe4d47b5afaf752920cbf, type: 3}
-  - {fileID: 21300000, guid: a1a63fa8a1252d748a4b5c11bf55d578, type: 3}
-  - {fileID: 21300000, guid: af4b58c002f91b74c9395f32eea8fbda, type: 3}
-  - {fileID: 21300000, guid: bbd7407710561674cad1ef14bfa3318c, type: 3}
-  - {fileID: 21300000, guid: f3541d69b42fcdb4f8e79147d4a67bcd, type: 3}
-  - {fileID: 21300000, guid: 4d2ece0dd773fd0428578cb74b57a232, type: 3}
-  - {fileID: 21300000, guid: 802de4bfe01e10d4aa419907c73c9c52, type: 3}
-  - {fileID: 21300000, guid: 8862ec0ba9152db4ba21efdceb6fc44f, type: 3}
-  - {fileID: 21300000, guid: ea34e2d672319494281f7420bd578f84, type: 3}
-  - {fileID: 21300000, guid: cc51527251a9a174386b8165d058e7b9, type: 3}
-  - {fileID: 21300000, guid: 9bc7bbf81e867714f9c82dacc535be84, type: 3}
-  - {fileID: 21300000, guid: 0c6f454a903083348a927d9ce468fb02, type: 3}
-  - {fileID: 21300000, guid: 1c20d07fc9a9c1c419ccb787821b4487, type: 3}
+  - {fileID: 21300000, guid: 46d09af4108d34040a6a24240ed18f35, type: 3}
+  - {fileID: 21300000, guid: 889f0bd3b4f6e1947a0428a4bf7bb08b, type: 3}
+  - {fileID: 21300000, guid: ebdb84e5b1d056a449315467a451f16e, type: 3}
+  - {fileID: 21300000, guid: 6c39c513d38a192429f5d04b32d79dc7, type: 3}
+  - {fileID: 21300000, guid: 30b17932ab264b14695340e018d7bba2, type: 3}
+  - {fileID: 21300000, guid: b72727a8830724d4eb121758242865d4, type: 3}
+  - {fileID: 21300000, guid: 536392bb16035844783915b7328b23eb, type: 3}
+  - {fileID: 21300000, guid: da19f87317cfb4d4ead72477cc6c441b, type: 3}
+  - {fileID: 21300000, guid: c5ca71aab12de5240935adc8559b9ed9, type: 3}
+  - {fileID: 21300000, guid: 106e7ac9418c9094abca2be7ad38fba4, type: 3}
+  - {fileID: 21300000, guid: 9443b0ed42e60114cb2ef605bbeb53c3, type: 3}
+  - {fileID: 21300000, guid: 276ff5ecccfde9d4896811b4af7c3cf8, type: 3}
+  - {fileID: 21300000, guid: 77fb34b15ac57d04084015a274f934b8, type: 3}
+  - {fileID: 21300000, guid: 712243a15a818ab4bb65ea270c018c65, type: 3}
+  - {fileID: 21300000, guid: 55bdc4676a65ce641a4e93761e7859a5, type: 3}
+  - {fileID: 21300000, guid: feb04dc1d072a804b8533be7594d2d65, type: 3}
   carSpriteRenderer: {fileID: 2091559141266290507}
   carSpriteRendererTemporary: {fileID: 4134558903095267656}
   colliderObject: {fileID: 5498852548707859947}
@@ -374,6 +374,7 @@ MonoBehaviour:
   currentFuel: 300
   maxFuel: 300
   FuelRegenerationRate: 1
+  lowFuelNotification: 0
   turn_speed: 0.2
   fuelBurnAmount: 0
   currentTime: 0

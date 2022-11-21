@@ -341,11 +341,13 @@ public class UIManager : MonoBehaviour
         {
             if (mycar.currentFuel / mycar.maxFuel < 0.15f)
             {
-                mycar.currentFuel += 35;
+                
+                mycar.currentFuel += 50;
                 LocalData data = DatabaseManager.Instance.GetLocalData();
                 data.coins -= rechargeCost;
                 DatabaseManager.Instance.UpdateData(data);
                 mycar.UpdateFuelData();
+                mycar.lowFuelNotification = false;
             }
             else
             {
@@ -354,7 +356,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            MessageBox.insta.showMsg("Not Enough Coins! Now go on foot to deliver food.", true);
+            MessageBox.insta.showMsg("Not Enough Coins! Wait until auto refuel.", true);
         }
     }
     #endregion

@@ -213,6 +213,7 @@ public class CarController : MonoBehaviour,IPunObservable
     }
 
     float temp_speed=0;
+    public bool lowFuelNotification = false;
     private void Move()
     {
 
@@ -221,6 +222,15 @@ public class CarController : MonoBehaviour,IPunObservable
             _rb2d.drag = Mathf.Lerp(_rb2d.drag, 5f, Time.fixedDeltaTime * 3);
             temp_speed = 0;
             return;
+        }
+
+        if (currentFuel < 50 && !lowFuelNotification)
+        {
+            lowFuelNotification = true;
+            UIManager.Instance.ShowInformationMsg("Low gas ! Kindly find gas station immediately", 10);
+        }
+        else if (currentFuel > 60) {
+            lowFuelNotification = false;
         }
 
         if (currentFuel <= 0)
@@ -272,6 +282,7 @@ public class CarController : MonoBehaviour,IPunObservable
             if (currentFuel < maxFuel / 2)
             {
                 StartCoroutine(UIManager.Instance.tutorialCO("low gas"));
+                
 
             }
             if (currentFuel < maxFuel / 4)
@@ -434,6 +445,7 @@ public class CarController : MonoBehaviour,IPunObservable
             UIManager.Instance.SetCoinText();
 
             currentFuel = maxFuel;
+            lowFuelNotification = true;
         }
         else
         {
