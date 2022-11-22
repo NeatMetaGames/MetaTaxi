@@ -1,5 +1,5 @@
 # Meta Taxi
-Taxi metaverse game, in which we have to pick up and drop off a customer in the city. we can also play with other online players in the city, and we can use voice chat to interact with them.
+Taxi metaverse game on Aurora Testnet, in which we have to pick up and drop off a customer in the city. we can also play with other online players in the city, and we can use voice chat to interact with them.
 
 [![Meta Taxi](https://img.youtube.com/vi/RJ9-6xQWM4Q/0.jpg)](https://www.youtube.com/watch?v=RJ9-6xQWM4Q)
 
